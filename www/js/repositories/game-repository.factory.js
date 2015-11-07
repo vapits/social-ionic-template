@@ -60,7 +60,7 @@
 
         function creategame( game ) {
             return $http({
-                method: 'game',
+                method: 'POST',
                 url: '',
                 data: game
             }).then(function successCallback(response) {
