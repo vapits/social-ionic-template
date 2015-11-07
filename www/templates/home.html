@@ -1,0 +1,22 @@
+<ion-view view-title="Browse">
+    <ion-content>
+        <h1>Browse</h1>
+
+        <div ng-repeat="item in feed" class="list card">
+
+            <div class="item item-avatar">
+                <img src="{{item.userImg}}">
+                <h2>{{item.fistName}} {{item.lastName}}</h2>
+                <p ng-bind="item.datetime"></p>
+            </div>
+
+            <div class="item item-body">
+                <p ng-bind="item.post">
+                </p>
+            </div>
+
+        </div>
+
+    </ion-content>
+</ion-view>
+
