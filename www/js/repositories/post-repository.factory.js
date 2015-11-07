@@ -14,6 +14,8 @@
             findAll: findAll,
             findOne: findOne,
             findAllByUserId: findAllByUserId,
+            createPost: createPost,
+            updatePost: updatePost
         };
 
         function findAll() {
@@ -51,6 +53,32 @@
                     post = response.data;
             }, function errorCallback(response) {
                 throw "postRepository.findAllByUserId: Error while fetching post" ;
+            });
+            return post;
+        }
+
+        function createPost( post ) {
+            return $http({
+                method: 'POST',
+                url: '',
+                data: post
+            }).then(function successCallback(response) {
+                    // post created
+            }, function errorCallback(response) {
+                throw "postRepository.createPost: Error while creating post" ;
+            });
+            return post;
+        }
+
+        function updatePost( post ) {
+            return $http({
+                method: 'PATCH',
+                url: '' + '/posts/' + post,
+                data: post
+            }).then(function successCallback(response) {
+                    // post updated
+            }, function errorCallback(response) {
+                throw "postRepository.updatePost: Error while updating post" ;
             });
             return post;
         }
