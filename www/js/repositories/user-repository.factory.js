@@ -2,16 +2,16 @@
     'use strict';
 
     angular
-        .module('starter')
-        .factory('usersRepository', usersRepository);
+        .module('wo')
+        .factory('userRepository', userRepository);
 
-    function usersRepository($http, $q) {
-        var storage = {
+    function userRepository($http, $q) {
+        var repositoryData = {
             users: []
         };
 
         return {
-            findAll: findALl,
+            findAll: findAll,
             findOne: findOne,
         };
 
@@ -21,9 +21,9 @@
                 method: 'GET',
                 url: ''
             }).then(function successCallback(response) {
-                    users = response.data;
+                users = response.data;
             }, function errorCallback(response) {
-                throw "usersRepository.findAll: an error occured";
+                throw "userRepository.findAll: Error while fetching users";
             });
             return users;
         }
@@ -36,10 +36,9 @@
             }).then(function successCallback(response) {
                     user = response.data;
             }, function errorCallback(response) {
-                throw "usersRepository.findOne: an error occured";
+                throw "userRepository.findAll: Error while fetching user";
             });
-            return users;
+            return user;
         }
     }
-
 })();
