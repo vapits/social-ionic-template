@@ -20,11 +20,21 @@ angular.module('wo', ['ionic', 'wo.controllers'])
   $stateProvider
 
     .state('home', {
-    url: '/home',
-    templateUrl: 'templates/home.html',
-    controller: 'HomeCtrl'
-  });
+      url: '/home',
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
+  })
+
+      .state('home.feed', {
+        url: '/feed',
+        views: {
+          'menuContent' :{
+            templateUrl: 'templates/home.html',
+            controller: 'HomeCtrl'
+          }
+        }
+      });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/error');
+  $urlRouterProvider.otherwise('/home');
 });
