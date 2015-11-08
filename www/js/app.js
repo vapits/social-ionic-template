@@ -1,6 +1,6 @@
 angular.module('wo', ['ionic', 'wo.controllers'])
 
-    .run(function ($ionicPlatform) {
+    .run(function ($ionicPlatform, $rootScope, $state) {
         $ionicPlatform.ready(function () {
             // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
             // for form inputs)
@@ -13,6 +13,8 @@ angular.module('wo', ['ionic', 'wo.controllers'])
                 // org.apache.cordova.statusbar required
                 StatusBar.styleDefault();
             }
+
+            $rootScope.$state = $state;
         });
     })
 
@@ -31,6 +33,25 @@ angular.module('wo', ['ionic', 'wo.controllers'])
                 views: {
                     'menuContent': {
                         templateUrl: 'templates/home.html',
+                        controller: 'HomeCtrl'
+                    }
+                }
+            })
+
+            .state('home.profile', {
+                url: '/profile',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/profile.html',
+                        controller: 'HomeCtrl'
+                    }
+                }
+            })
+            .state('home.profile.visit', {
+                url: '/profile/:id',
+                views: {
+                    'menuContent': {
+                        templateUrl: 'templates/profile.html',
                         controller: 'HomeCtrl'
                     }
                 }

@@ -4,8 +4,8 @@
         <div ng-repeat="item in feed" class="list card">
 
             <div class="item item-avatar">
-                <img src="{{item.userImg}}">
-                <h2>{{item.fistName}} {{item.lastName}}</h2>
+                <img src="{{item.userImg}}" ng-click="$state.go('home.profile.visit', {id: item.userId})">
+                <h2 ng-click="$state.go('home.profile.visit', {id: item.userId})">{{item.fistName}} {{item.lastName}}</h2>
                 <p ng-bind="item.datetime"></p>
             </div>
 
