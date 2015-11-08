@@ -1,19 +1,72 @@
 <ion-view title="Activity">
     <ion-content>
 
-        <div ng-repeat="item in feed" class="list card">
+        <div ng-repeat="item in feed">
+            <div ng-if="item.type === 'status'" class="card">
 
-            <div class="item item-avatar">
-                <img src="{{item.userImg}}" ng-click="$state.go('home.profile.visit', {id: item.userId})">
-                <h2 ng-click="$state.go('home.profile.visit', {id: item.userId})">{{item.fistName}} {{item.lastName}}</h2>
-                <p ng-bind="item.datetime"></p>
+                <div class="item item-avatar item-stable">
+                    <img src="{{item.userImg}}" ng-click="$state.go('home.profile.visit', {id: item.userId})">
+                    <h2 ng-click="$state.go('home.profile.visit', {id: item.userId})">{{item.fistName}} {{item.lastName}}</h2>
+                    <p ng-bind="item.datetime"></p>
+                </div>
+
+                <div class="item item-body">
+                    <p ng-bind="item.post">
+                    </p>
+                </div>
+
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-thumbsup"></i>
+                        Like
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-chatbox"></i>
+                        Comment
+                    </a>
+                </div>
+
             </div>
 
-            <div class="item item-body">
-                <p ng-bind="item.post">
-                </p>
-            </div>
+            <div class="card" ng-if="item.type === 'score'">
+                <div class="item item-divider balanced-bg">
+                    <i class="ion ion-trophy"></i> New {{item.game}} score!
+                </div>
+                <div class="row">
+                    <div class="col col-33 text-center">
+                        <img id="score-profile-image" src="{{item.player_A.userImg}}">
+                        {{item.player_A.fistName}}
+                    </div>
 
+                    <div class="col col-33 col-center text-center"><i class="ion ion-ios-game-controller-b"></i><br>VS</div>
+
+                    <div class="col col-33 text-center">
+                        <img id="score-profile-image" src="{{item.player_B.userImg}}">
+                        {{item.player_B.fistName}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col col-33 text-center">
+                        <h2>{{item.player_A.score}}</h2>
+                    </div>
+
+                    <div class="col col-33 text-center"></div>
+
+                    <div class="col col-33 text-center">
+                        <h2>{{item.player_B.score}}</h2>
+                    </div>
+                </div>
+                <div class="item tabs tabs-secondary tabs-icon-left">
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-thumbsup"></i>
+                        Like
+                    </a>
+                    <a class="tab-item" href="#">
+                        <i class="icon ion-chatbox"></i>
+                        Comment
+                    </a>
+                </div>
+            </div>
         </div>
 
     </ion-content>
