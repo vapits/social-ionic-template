@@ -1,6 +1,15 @@
 <ion-view title="Activity">
     <ion-content>
-
+        <div class="item tabs tabs-secondary tabs-icon-left">
+            <a class="tab-item" href ng-click="openPost('status')">
+                <i class="icon ion-ios-compose"></i>
+                Post Status
+            </a>
+            <a class="tab-item" href ng-click="openPost('score')">
+                <i class="icon ion-trophy"></i>
+                Add score
+            </a>
+        </div>
         <div ng-repeat="item in feed">
             <div ng-if="item.type === 'status'" class="card">
 
@@ -34,14 +43,14 @@
                 </div>
                 <div class="row">
                     <div class="col col-33 text-center">
-                        <img id="score-profile-image" src="{{item.player_A.userImg}}">
+                        <img id="score-profile-image" src="{{item.player_A.userImg}}" ng-click="$state.go('home.profile.visit', {id: item.player_A.userId})">
                         {{item.player_A.fistName}}
                     </div>
 
                     <div class="col col-33 col-center text-center"><i class="ion ion-ios-game-controller-b"></i><br>VS</div>
 
                     <div class="col col-33 text-center">
-                        <img id="score-profile-image" src="{{item.player_B.userImg}}">
+                        <img id="score-profile-image" src="{{item.player_B.userImg}}" ng-click="$state.go('home.profile.visit', {id: item.player_B.userId})">
                         {{item.player_B.fistName}}
                     </div>
                 </div>
