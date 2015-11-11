@@ -2,43 +2,45 @@ angular.module('wo.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  $ionicModal.fromTemplateUrl('templates/modals/post.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.postStatus = modal;
+  });
 
-  // Form data for the login modal
-  $scope.loginData = {};
+  $ionicModal.fromTemplateUrl('templates/modals/addScore.html', {
+    scope: $scope
+  }).then(function(modal) {
+    $scope.postScore = modal;
+  });
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
+  $scope.openPost = function(type) {
+    if (type === 'status') {
+      $scope.postStatus.show();
+    } else {
+      $scope.postScore.show();
+    }
+  }
+  $scope.closePost = function() {
+    $scope.postStatus.hide();
+    $scope.postScore.hide();
+  }
+
+})
+.controller('LoginCtrl', function($scope, $ionicModal, $timeout) {
+
+  $ionicModal.fromTemplateUrl('templates/loginHelp.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
   });
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
-
-  // Open the login modal
-  $scope.login = function() {
+  $scope.showHelp = function() {
     $scope.modal.show();
-  };
-
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
-
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
+  }
+  $scope.closeHelp = function() {
+    $scope.modal.hide();
+  }
 })
 .controller('HomeCtrl', function($scope, $ionicModal, $timeout) {
 
